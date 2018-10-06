@@ -540,9 +540,14 @@ var updateOpacity = function() {
 
 var updateRollup = function() {
     if (all_hidden) {
-      $('#container').slideUp("fast");
+      $('#container').animate({height: "0px"}, 200, function() {
+        document.getElementById("container").style.visibility = "hidden";
+      });
     } else {
-      $('#container').slideDown("fast");
+      var container = document.getElementById("container");
+      container.style.height = "0px";
+      container.style.visibility = "visible";
+      $('#container').animate({height: container.scrollHeight}, 200);
       resetTimeout();
     }
 }
