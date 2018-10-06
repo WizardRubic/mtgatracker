@@ -530,25 +530,20 @@ let all_hidden = false;
 var hideTimeoutId;
 
 var updateOpacity = function() {
-    console.log("update opacity");
     if (all_hidden) {
         document.getElementById("container").style.opacity = "0.1";
     } else {
         document.getElementById("container").style.opacity = "1";
-        if (hideTimeoutId) {
-          clearTimeout(hideTimeoutId)
-          hideTimeoutId = null;
-        }
+        resetTimeout();
     }
 }
 
 var updateRollup = function() {
-    console.log("Updating roll status");
     if (all_hidden) {
-      document.getElementById("container").style.opacity = "0.1";
+      $('#container').slideUp("fast");
     } else {
-      document.getElementById("container").style.opacity = "1";
-      resetTimeout()
+      $('#container').slideDown("fast");
+      resetTimeout();
     }
 }
 
@@ -560,7 +555,6 @@ var resetTimeout = function () {
 }
 
 var updateVisibility = function () {
-  console.log("in updateVisibility");
     if(appData.rollupMode) {
       updateRollup();
     } else {
@@ -569,7 +563,6 @@ var updateVisibility = function () {
 }
 
 var toggleOpacity = function(hide) {
-  console.log("hide: " + hide);
     if (hide === undefined) {
       all_hidden = !all_hidden;
     } else {
